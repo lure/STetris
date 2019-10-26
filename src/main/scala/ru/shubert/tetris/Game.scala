@@ -35,10 +35,10 @@ object Game extends BorderPanel {
   focusable = true
   listenTo(keys, timer, this)
   reactions += {
-    case e: FocusLost =>
+    case _: FocusLost =>
       paused = false
       switchPaused()
-    case e: ScalaSwingTimerEvent => tick()
+    case _: ScalaSwingTimerEvent => tick()
     case KeyPressed(_, Key.Up, _, _) => ifRunning(Brix.rotate)
     case KeyPressed(_, Key.Left, _, _) => ifRunning(Brix.moveLeft)
     case KeyPressed(_, Key.Right, _, _) => ifRunning(Brix.moveRight)
@@ -132,8 +132,8 @@ object Game extends BorderPanel {
     g.drawImage(Art.gameover, x, y, null)
   }
 
-  def truncateLines() = {
-    def truncate(minY: Int, maxY: Int) = {
+  def truncateLines(): Unit = {
+    def truncate(minY: Int, maxY: Int): Int = {
       var rows = 0
       for {
         x <- minY to maxY
@@ -162,11 +162,11 @@ object Game extends BorderPanel {
   private def resetGlass(toRow: Int = rows - 1) {
     for {
       r <- 0 to toRow
-      c <- 0 to (cols - 1)
+      c <- 0 until cols
     } glass(r)(c) = -1
   }
 
-  def bindFigure() = {
+  def bindFigure(): Unit = {
     Brix.getCurrent foreach {
       case (x: Int, y: Int) =>
         glass(Brix.currentY + y)(Brix.currentX + x) = Brix.curFigure.c

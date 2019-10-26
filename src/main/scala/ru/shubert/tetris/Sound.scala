@@ -41,11 +41,11 @@ object Sound {
     }
   }
 
-  def playBind() = play(bind)
+  def playBind(): Unit = play(bind)
 
-  def playGameOver() = play(gameOver)
+  def playGameOver(): Unit = play(gameOver)
 
-  def playTrunc(level: Int) = play(soundMap(level))
+  def playTrunc(level: Int): Unit = play(soundMap(level))
 
   private val soundMap = Map[Int, Clip](
     1 -> shorten,

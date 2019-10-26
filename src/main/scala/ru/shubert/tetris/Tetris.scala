@@ -5,7 +5,7 @@ import scala.swing._
 
 object Tetris extends SimpleSwingApplication {
 
-  def top = new MainFrame {
+  def top: MainFrame = new MainFrame {
     contents = Game
     resizable = false
     centerOnScreen()

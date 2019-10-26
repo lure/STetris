@@ -15,7 +15,7 @@ class ScalaSwingTimer private(delay: Int) extends Timer(delay, null) with Publis
   _this =>
 
   addActionListener(new ActionListener {
-    def actionPerformed(e: ActionEvent): Unit = publish(new ScalaSwingTimerEvent(_this))
+    def actionPerformed(e: ActionEvent): Unit = publish(ScalaSwingTimerEvent(_this))
   })
 }
 
